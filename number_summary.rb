@@ -10,6 +10,7 @@ class NumberSummary
 			for n in 0...array_1.length
 				array.push(array_1[n.to_f])
 			end
+			return array
 		end
 
 			def max(array)
@@ -17,7 +18,7 @@ class NumberSummary
 			end
 
 			def min(array)
-				return array.min  
+				return array.min 
 			end
 
 			def mean(array)
@@ -25,51 +26,107 @@ class NumberSummary
 				for x in 0...array.length	
 					y += array[x]
 				end
-				y / array.length 
+				y = y / array.length 
+				return y.round(1)
 			end
 			
-			# def mode(array)
-			# mode = Hash.new(0)
-			# 	array.each do |n|
-			# 		if mode.has_key?(n)
-			# 			mode[n] = mode[n] + 1
-			# 		else
-			# 			mode[n] = 1
-			# 		end
-			# 	end
-			# return mode.select { |k,v| v == mode.values.max}.keys
-			# end
 			def mode(array)
 				array = array.sort
-				array_key = []
-				array_value = []
+				array_of_count = []
+				max_of_count = []
+				array_of_values = []
+				final_array = []
+				count = 1
+				original_count = 1
 				for n in 0...array.length
-					if array_key.include? n
-
+					if array[n] == array[n + 1]
+						count += 1
 					else
-						array_key.push(array[n])
-						array_value.push()
-
+						array_of_count.push(count)
+						array_of_values.push(array[n])
+						count = original_count
+					end
 				end
+				max_count = array_of_count.max
+				for n in 0...array_of_count.length
+					if array_of_count[n] == max_count
+						final_array.push(array_of_values[n])
+					end
+				end
+				return final_array
 			end
 
 			def median(array)
 				if array.length % 2 == 0
 					array = array.sort
-					return (array[array.length/2] + array[(array.length/2) - 1])/ 2.0
+					return ((array[array.length/2] + array[(array.length/2) - 1])/ 2.0).round(1)
 				else
 					array = array.sort
-					return array[(array.length - 1)/ 2]
+					return array[(array.length - 1)/ 2].round(1)
 				end	
 			end
 
- 
+			def q1(array)
+				array = array.sort
+				array_even = []
+				array_odd = []
+				if array.length % 2 == 0
+					for n in 0..((array.length/2)-1)
+						array_even.push(array[n])
+					end
+					return median(array_even).round(1)
+				else
+					for n in 0...((array.length - 1)/2)
+						array_odd.push(array[n])
+					end
+					return median(array_odd).round(1)
+				end
+			end
+			
+			def q3(array)
+				array = array.sort
+				array_even = []
+				array_odd = []
+				if array.length % 2 == 0
+					for n in (array.length/2)..(array.length - 1)
+						array_even.push(array[n])
+					end
+					return median(array_even).round(1)
+				else
+					for n in (((array.length - 1)/2) + 1)..(array.length-1)
+						array_odd.push(array[n])
+					end
+					return median(array_odd).round(1)
+				end
+			end
 
+			def sigma(array)
+				sum_of_array = 0
+				for n in 0...array.length
+					sum_of_array+=array[n]
+				end
+				mean_of_array = sum_of_array/array.length.to_f
+				sum = 0
+				for n in 0...array.length
+					sum += (array[n]-mean_of_array)**2.0
+				end
+				sum = sum/(array.length - 1.0).to_f
+				return Math.sqrt(sum).round(1)
+			end
 
-
-
-
-
-
- end
+			def summarize(file)
+				file = convert_to_float(file)
+				return """
+				Number Summary:
+					min: #{(min(file))}
+					max: #{(max(file))}
+					mean: #{(mean(file))}
+					median: #{(median(file))}
+					q1: #{(q1(file))}
+					q3: #{(q3(file))}
+					mode: #{(mode(file))}
+					sigma: #{(sigma(file))}
+				"""
+			end
+	end
 end
