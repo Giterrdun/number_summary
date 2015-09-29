@@ -8,7 +8,7 @@ class NumberSummary
 			array_1 = line.split(',')
 			array = []
 			for n in 0...array_1.length
-				array.push(array_1[n.to_f])
+				array.push(array_1[n].to_f)
 			end
 			return array
 		end
