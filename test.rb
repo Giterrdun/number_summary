@@ -203,7 +203,7 @@ module NumberSummaryTests
 			assert_equal 5, NumberSummary.mean([0,10])
 			assert_equal 25, NumberSummary.mean([0, 0, 0, 100])
 			assert_equal 7.5, NumberSummary.mean([0,15])
-			assert_equal 5.75, NumberSummary.mean([0,11.5])
+			assert_equal 5.8, NumberSummary.mean([0,11.5])
 		end
 	end
 	class Mode < NumberSummaryTest
@@ -215,8 +215,25 @@ module NumberSummaryTests
 	end
 	class Median < NumberSummaryTest
 		def test_median
-			assert_equal 3 , NumberSummary.median([1,2,3,4,5])
+			assert_equal 3, NumberSummary.median([1,2,3,4,5])
 			assert_equal 4.5 , NumberSummary.median([3,6,7,8,2,1,5,4])
+		end
+	end
+	class Q1 < NumberSummaryTest
+		def test_q1
+			assert_equal 2.5 , NumberSummary.q1([1,2,3,4,5,6,7,8])
+			assert_equal 1.5, NumberSummary.q1([1,2,3,4,5])
+		end
+	end
+	class Q3 < NumberSummaryTest
+		def test_q3
+			assert_equal 7.5 , NumberSummary.q3([1,2,3,4,5,6,7,8,9])
+			assert_equal 6.5, NumberSummary.q3([2,4,6,5,1,8,3,7])
+		end
+	end
+	class Sigma < NumberSummaryTest
+		def test_sigma
+			assert_equal 4.6 , NumberSummary.sigma([20,23,23,24,25,22,12,21,29])
 		end
 	end
 

@@ -28,7 +28,7 @@ class NumberSummary
 					y += array[x]
 				end
 				y = y / array.length 
-				return y
+				return y.round(1)
 			end
 			
 			def mode(array)
@@ -112,7 +112,7 @@ class NumberSummary
 					sum += (array[n]-mean_of_array)**2.0
 				end
 				sum = sum/(array.length - 1.0).to_f
-				return Math.sqrt(sum)
+				return Math.sqrt(sum).round(1)
 			end
 
 				def summarize(file)
@@ -130,3 +130,5 @@ sigma: #{(sigma(file)).round(1)}
 				end
 	end
 end
+
+
