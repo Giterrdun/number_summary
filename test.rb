@@ -1,10 +1,15 @@
+require 'minitest/autorun'
+
+# require 'minitest/reporters'
+# Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+
 
 
 
 require_relative 'number_summary'
 
 class NumberSummaryTest < MiniTest::Test
-<<<<<<< HEAD
+
 
 end
 
@@ -170,14 +175,12 @@ q3: 1.6
 mode: [-4.73, 1.59]
 sigma: 4.8
 '''
-			assert_equal summary, NumberSummary.summarize('data.csv')
+		assert_equal summary, NumberSummary.summarize('data.csv')
 		end
 	end
 
 end
-=======
-	
-end
+
 
 module NumberSummaryTests
 	class Max < NumberSummaryTest
@@ -224,5 +227,3 @@ end
 
 
 
-
->>>>>>> finish
