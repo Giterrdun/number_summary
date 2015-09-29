@@ -1,4 +1,5 @@
 # @author Michelle Mao  <mm321whatsup@gmail.com>
+#@author Juan Rodriguez <rodriguesmelojp@s.dcsdk12.org>
 class NumberSummary
 	class << self
 		
@@ -62,7 +63,7 @@ class NumberSummary
 					return ((array[array.length/2] + array[(array.length/2) - 1])/ 2.0).round(1)
 				else
 					array = array.sort
-					return array[(array.length - 1)/ 2].round(1)
+					return array[(array.length - 1.0)/ 2.0]/1.0
 				end	
 			end
 
@@ -74,12 +75,12 @@ class NumberSummary
 					for n in 0..((array.length/2)-1)
 						array_even.push(array[n])
 					end
-					return median(array_even).round(1)
+					return median(array_even)
 				else
 					for n in 0...((array.length - 1)/2)
 						array_odd.push(array[n])
 					end
-					return median(array_odd).round(1)
+					return median(array_odd)
 				end
 			end
 			
@@ -91,12 +92,12 @@ class NumberSummary
 					for n in (array.length/2)..(array.length - 1)
 						array_even.push(array[n])
 					end
-					return median(array_even).round(1)
+					return median(array_even)
 				else
 					for n in (((array.length - 1)/2) + 1)..(array.length-1)
 						array_odd.push(array[n])
 					end
-					return median(array_odd).round(1)
+					return median(array_odd)
 				end
 			end
 
@@ -114,19 +115,21 @@ class NumberSummary
 				return Math.sqrt(sum).round(1)
 			end
 
-			def summarize(file)
-				file = convert_to_float(file)
-				return """
-				Number Summary:
-					min: #{(min(file))}
-					max: #{(max(file))}
-					mean: #{(mean(file))}
-					median: #{(median(file))}
-					q1: #{(q1(file))}
-					q3: #{(q3(file))}
-					mode: #{(mode(file))}
-					sigma: #{(sigma(file))}
-				"""
-			end
+				def summarize(file)
+					file = convert_to_float(file)
+					return """Number Summary:
+min: #{(min(file))}
+max: #{(max(file))}
+mean: #{(mean(file)).round(1)}
+median: #{(median(file)).round(1)}
+q1: #{(q1(file)).round(1)}
+q3: #{(q3(file)).round(1)}
+mode: #{(mode(file))}
+sigma: #{(sigma(file)).round(1)}
+"""
+				end
 	end
 end
+
+
+
