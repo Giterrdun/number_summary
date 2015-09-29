@@ -1,4 +1,5 @@
 # @author Michelle Mao  <mm321whatsup@gmail.com>
+#@author Juan Rodriguez <rodriguesmelojp@s.dcsdk12.org>
 class NumberSummary
 	class << self
 		
